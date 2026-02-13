@@ -1,0 +1,836 @@
+/* =============================================================
+   ACE ENGLISH WORKSHOP — style.css
+   Charkha Classes | English Learning Workshop
+
+   Aesthetic: Organic Editorial
+   Palette:   Forest Green (cool) + Moss (warm) + Charcoal
+              Brown + Warm Off-White
+   Fonts:     Playfair Display (headings) + Lato (body)
+
+   Table of Contents:
+   1.  Google Fonts Import
+   2.  CSS Custom Properties
+   3.  Reset & Base
+   4.  Typography
+   5.  Layout Utilities
+   6.  Header  (.site-header)
+   7.  Navigation  (.site-nav / .cta-nav)
+   8.  Main  (.site-main)
+   9.  Section Base  (.content-section)
+   10. Section Accent  (.section-accent)
+   11. Section Header  (.section-header)
+   12. Hero Section  (.hero-section)
+   13. Info Grid  (.info-grid / .info-card)
+   14. Outcomes Grid  (.outcomes-grid / .outcome-card)
+   15. Features Grid  (.features-grid / .feature-card)
+   16. Certificate Box  (.certificate-box)
+   17. Contact Box  (.contact-box)
+   18. Footer  (.site-footer)
+   19. Utility Classes
+   20. Responsive — Tablet  (>= 640px)
+   21. Responsive — Desktop (>= 960px)
+   ============================================================= */
+
+
+/* ─────────────────────────────────────────────────────────────
+   1. GOOGLE FONTS IMPORT
+   Playfair Display: elegant serif for headings (warm, authoritative)
+   Lato: clean humanist sans for body copy (very readable)
+───────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
+
+/* ─────────────────────────────────────────────────────────────
+   2. CSS CUSTOM PROPERTIES  (Design Tokens)
+   All colours, sizes, and spacing live here for easy theming.
+───────────────────────────────────────────────────────────── */
+:root {
+
+  /* ── Colour Palette ── */
+
+  /* Greens — primary brand family */
+  --green-deep:    #2C5F2E;   /* Forest green — primary brand          */
+  --green-mid:     #3A7D44;   /* Leaf green — hover / interactive      */
+  --green-sage:    #7A9E7E;   /* Cool sage — borders, muted accents    */
+  --green-pale:    #EDF4EE;   /* Very light sage — hover backgrounds   */
+  --green-mist:    #F2F7F2;   /* Near-white with green tint — alt bg   */
+
+  /* Warm neutrals — charcoal brown family */
+  --brown-dark:    #2E2218;   /* Deep charcoal-brown — primary text    */
+  --brown-mid:     #6B4F3A;   /* Warm brown — secondary/muted text     */
+  --brown-light:   #C4A882;   /* Tan gold — decorative highlights      */
+
+  /* Off-white backgrounds */
+  --offwhite:      #FAF8F4;   /* Warm off-white — page background      */
+  --offwhite-warm: #F5EFE6;   /* Slightly golden — card surfaces       */
+
+  /* Accent — amber gold for CTAs and emphasis */
+  --accent:        #C17F3E;   /* Warm amber-gold                       */
+  --accent-hover:  #A56828;   /* Darker amber — hover states           */
+  --accent-pale:   #FDF3E7;   /* Very pale amber — highlight bg        */
+
+  /* Text hierarchy */
+  --text-primary:  #2A2018;   /* Warm near-black — strongest emphasis  */
+  --text-body:     #3D3028;   /* Warm dark brown — body reading text   */
+  --text-muted:    #7A6A5A;   /* Muted warm grey — labels, notes       */
+  --text-on-dark:  #F5F1EC;   /* Warm off-white — on dark backgrounds  */
+
+  /* Borders */
+  --border-light:  #D8E4D9;   /* Subtle green-tinted border            */
+  --border-mid:    #A8C4AB;   /* Sage — visible borders, card edges    */
+
+  /* Header & Footer */
+  --header-bg:     #1A3A1C;   /* Very deep forest — header             */
+  --footer-bg:     #1E1610;   /* Dark charcoal brown — footer          */
+
+  /* ── Typography ── */
+  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:    'Lato', 'Segoe UI', Helvetica, sans-serif;
+
+  /* ── Font Sizes (mobile-first base) ── */
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-md:   1.125rem;   /* 18px */
+  --text-lg:   1.35rem;    /* ~22px */
+  --text-xl:   1.7rem;     /* ~27px */
+  --text-2xl:  2.1rem;     /* ~34px */
+  --text-3xl:  2.75rem;    /* ~44px */
+
+  /* ── Spacing ── */
+  --sp-xs:  0.375rem;
+  --sp-sm:  0.75rem;
+  --sp-md:  1.25rem;
+  --sp-lg:  2rem;
+  --sp-xl:  3rem;
+  --sp-2xl: 4.5rem;
+
+  /* ── Layout ── */
+  --max-w:        880px;
+  --pad-page:     1.25rem;
+
+  /* ── Border Radii ── */
+  --r-sm:  4px;
+  --r-md:  8px;
+  --r-lg:  14px;
+  --r-xl:  24px;
+
+  /* ── Shadows ── */
+  --shadow-xs: 0 1px 3px rgba(44, 95, 46, 0.07);
+  --shadow-sm: 0 2px 10px rgba(44, 95, 46, 0.10);
+  --shadow-md: 0 6px 24px rgba(44, 95, 46, 0.13);
+
+  /* ── Transitions ── */
+  --t-fast: 0.16s ease;
+  --t-base: 0.26s ease;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   3. RESET & BASE
+───────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.75;
+  color: var(--text-body);
+  background-color: var(--offwhite);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--green-mid);
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+
+a:hover,
+a:focus {
+  color: var(--green-deep);
+  text-decoration: underline;
+}
+
+ul { list-style: none; }
+
+
+/* ─────────────────────────────────────────────────────────────
+   4. TYPOGRAPHY
+───────────────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--brown-dark);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h2 { font-size: var(--text-xl); }
+h3 { font-size: var(--text-lg); }
+
+p {
+  margin-bottom: var(--sp-sm);
+}
+p:last-child { margin-bottom: 0; }
+
+strong {
+  color: var(--green-deep);
+  font-weight: 700;
+}
+em {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   5. LAYOUT UTILITIES
+   .section-container, .header-container, etc. — centred wrappers
+───────────────────────────────────────────────────────────── */
+.section-container,
+.header-container,
+.nav-container,
+.footer-container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--pad-page);
+  padding-right: var(--pad-page);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   6. HEADER  .site-header
+   Deep forest green with rich layered background and top amber stripe
+───────────────────────────────────────────────────────────── */
+.site-header {
+  background-color: var(--header-bg);
+  padding: var(--sp-xl) 0 var(--sp-lg);
+  text-align: center;
+  border-top: 5px solid var(--accent);
+  /* Atmospheric depth: overlapping radial gradients */
+  background-image:
+    radial-gradient(ellipse at 10% 90%, rgba(58,125,68,0.30) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 10%, rgba(44,95,46,0.20) 0%, transparent 55%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative leaf-shape background element (CSS only) */
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -40px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(122, 158, 126, 0.08);
+  pointer-events: none;
+}
+
+/* Main brand title */
+.site-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--text-on-dark);
+  letter-spacing: 0.01em;
+  margin-bottom: var(--sp-xs);
+}
+
+/* "By Charkha Classes" */
+.site-subtitle {
+  font-size: var(--text-sm);
+  font-weight: 300;
+  color: rgba(245, 241, 236, 0.60);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+/* Thin decorative rule below header text */
+.site-header .header-container::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--green-sage), transparent);
+  margin: var(--sp-md) auto 0;
+  border-radius: 2px;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   7. NAVIGATION  .site-nav
+   Two roles:
+   (a) Standard link nav (features.html, details.html)
+   (b) .cta-nav — index.html primary call-to-action
+───────────────────────────────────────────────────────────── */
+.site-nav {
+  background-color: var(--green-mist);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.site-nav .nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+  padding-top: var(--sp-sm);
+  padding-bottom: var(--sp-sm);
+}
+
+/* ── (a) Standard nav links ── */
+.nav-link {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--green-deep);
+  padding: var(--sp-xs) var(--sp-sm);
+  border-radius: var(--r-sm);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background-color var(--t-fast), color var(--t-fast);
+  text-decoration: none;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  background-color: var(--green-pale);
+  color: var(--green-deep);
+  text-decoration: none;
+}
+
+/* Pipe separator in nav */
+.nav-separator {
+  color: var(--border-mid);
+  font-size: var(--text-base);
+  user-select: none;
+  line-height: 1;
+}
+
+/* ── (b) CTA Nav (index.html) ── */
+.cta-nav {
+  background-color: var(--offwhite-warm);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 2px solid var(--border-light);
+}
+
+.cta-nav .nav-container {
+  padding-top: var(--sp-xl);
+  padding-bottom: var(--sp-xl);
+  flex-direction: column;   /* stacked on mobile */
+  align-items: center;
+  gap: var(--sp-md);
+}
+
+/* Primary CTA button */
+.nav-btn {
+  display: inline-block;
+  background-color: var(--green-deep);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.9rem 2.4rem;
+  border-radius: var(--r-md);
+  text-decoration: none;
+  min-width: 240px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition:
+    background-color var(--t-fast),
+    transform var(--t-fast),
+    box-shadow var(--t-fast);
+}
+
+.nav-btn:hover,
+.nav-btn:focus {
+  background-color: var(--green-mid);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Second CTA button — outlined / ghost style */
+.nav-btn:last-child {
+  background-color: transparent;
+  color: var(--green-deep);
+  border: 2px solid var(--green-deep);
+  box-shadow: none;
+}
+
+.nav-btn:last-child:hover,
+.nav-btn:last-child:focus {
+  background-color: var(--green-pale);
+  color: var(--green-deep);
+  box-shadow: var(--shadow-xs);
+  transform: translateY(-2px);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   8. MAIN  .site-main
+───────────────────────────────────────────────────────────── */
+.site-main {
+  flex: 1 0 auto;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   9. SECTION BASE  .content-section
+───────────────────────────────────────────────────────────── */
+.content-section {
+  padding: var(--sp-xl) 0;
+  background-color: var(--offwhite);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   10. SECTION ACCENT  .section-accent
+   Alternating pale green for visual rhythm between sections
+───────────────────────────────────────────────────────────── */
+.section-accent {
+  background-color: var(--green-mist);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   11. SECTION HEADER  .section-header
+───────────────────────────────────────────────────────────── */
+.section-header {
+  margin-bottom: var(--sp-lg);
+}
+
+.section-header h2 {
+  color: var(--green-deep);
+  position: relative;
+  display: inline-block;
+  padding-bottom: var(--sp-sm);
+}
+
+/* Gradient underline accent on every section heading */
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 44px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--green-sage));
+  border-radius: 2px;
+}
+
+/* Optional subtitle below heading */
+.section-subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-top: var(--sp-sm);
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   12. HERO SECTION  .hero-section
+   index.html: centred, rich, welcoming atmosphere
+───────────────────────────────────────────────────────────── */
+.hero-section {
+  background-color: var(--offwhite-warm);
+  background-image:
+    radial-gradient(ellipse at 5% 95%, rgba(122,158,126,0.20) 0%, transparent 55%),
+    radial-gradient(ellipse at 95% 5%,  rgba(193,127,62,0.10) 0%, transparent 55%);
+  text-align: center;
+  padding: var(--sp-2xl) 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.hero-section .section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* "15-Day Summer Special" badge pill */
+.hero-badge {
+  display: inline-block;
+  background-color: var(--accent-pale);
+  border: 1.5px solid var(--brown-light);
+  border-radius: 100px;
+  padding: var(--sp-xs) var(--sp-md);
+  margin-bottom: var(--sp-lg);
+}
+
+.hero-badge span {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--accent-hover);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Hero main heading */
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  color: var(--brown-dark);
+  line-height: 1.2;
+  max-width: 540px;
+  margin-bottom: var(--sp-md);
+}
+
+/* Hero description */
+.hero-description {
+  font-size: var(--text-md);
+  color: var(--text-body);
+  max-width: 460px;
+  line-height: 1.8;
+  margin-bottom: var(--sp-md);
+}
+
+/* Small tag notes below description */
+.hero-note {
+  font-size: var(--text-sm);
+  color: var(--green-sage);
+  letter-spacing: 0.06em;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   13. INFO GRID  .info-grid / .info-card
+   Workshop stats: Duration, Dates, Age Group, Fees
+   Used on both index.html and details.html
+───────────────────────────────────────────────────────────── */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-md);
+}
+
+.info-card {
+  background-color: #fff;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--r-lg);
+  padding: var(--sp-lg) var(--sp-md);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-xs);
+  box-shadow: var(--shadow-xs);
+  /* Strong left accent bar in sage green */
+  border-left: 4px solid var(--green-sage);
+  transition: box-shadow var(--t-fast), transform var(--t-fast);
+}
+
+.info-card:hover {
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+/* Small label above value: "Duration", "Dates", etc. */
+.info-label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--green-sage);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Main value text */
+.info-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  color: var(--brown-dark);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Fees card — amber highlight */
+.highlight-fee {
+  color: var(--accent);
+  font-size: var(--text-xl);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   14. OUTCOMES GRID  .outcomes-grid / .outcome-card
+   What students achieve — left-bordered cards
+───────────────────────────────────────────────────────────── */
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-md);
+}
+
+.outcome-card {
+  background-color: #fff;
+  border-radius: var(--r-md);
+  padding: var(--sp-md) var(--sp-lg);
+  border-left: 4px solid var(--green-mid);
+  box-shadow: var(--shadow-xs);
+  font-size: var(--text-base);
+  color: var(--text-body);
+  line-height: 1.65;
+  transition: box-shadow var(--t-fast), border-color var(--t-fast);
+}
+
+.outcome-card:hover {
+  box-shadow: var(--shadow-sm);
+  border-left-color: var(--green-deep);
+}
+
+.outcome-card p { margin: 0; }
+
+
+/* ─────────────────────────────────────────────────────────────
+   15. FEATURES GRID  .features-grid / .feature-card
+   features.html — pill-chip tag style, wrapping flex grid
+───────────────────────────────────────────────────────────── */
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+}
+
+.feature-card {
+  background-color: #fff;
+  color: var(--green-deep);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--r-xl);
+  border: 2px solid var(--border-mid);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition:
+    background-color var(--t-fast),
+    border-color var(--t-fast),
+    transform var(--t-fast),
+    box-shadow var(--t-fast);
+  cursor: default;
+}
+
+/* Dot accent before each chip */
+.feature-card::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--green-sage);
+  flex-shrink: 0;
+}
+
+.feature-card:hover {
+  background-color: var(--green-pale);
+  border-color: var(--green-mid);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xs);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   16. CERTIFICATE BOX  .certificate-box
+   details.html — warm amber-tinted centred callout
+───────────────────────────────────────────────────────────── */
+.certificate-box {
+  background: linear-gradient(
+    135deg,
+    var(--accent-pale) 0%,
+    var(--offwhite-warm) 100%
+  );
+  border: 2px solid var(--brown-light);
+  border-radius: var(--r-lg);
+  padding: var(--sp-xl) var(--sp-lg);
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.certificate-box p {
+  font-size: var(--text-md);
+  color: var(--text-body);
+  line-height: 1.8;
+}
+
+/* Inline emphasis: "Certificate of Completion" */
+.highlight-text {
+  color: var(--accent-hover);
+  font-weight: 700;
+  font-family: var(--font-heading);
+  font-style: italic;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   17. CONTACT BOX  .contact-box
+   details.html — dark forest green panel, prominent numbers
+───────────────────────────────────────────────────────────── */
+.contact-box {
+  background-color: var(--header-bg);
+  border-radius: var(--r-lg);
+  padding: var(--sp-xl) var(--sp-lg);
+  text-align: center;
+  max-width: 440px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-md);
+  background-image:
+    radial-gradient(ellipse at 80% 80%, rgba(58,125,68,0.25) 0%, transparent 60%);
+}
+
+.contact-text {
+  font-size: var(--text-sm);
+  color: rgba(245, 241, 236, 0.60);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-md);
+}
+
+.contact-number {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: #fff;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+  margin-bottom: 0;
+}
+
+.contact-number .separator {
+  color: var(--green-sage);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--text-lg);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   18. FOOTER  .site-footer
+───────────────────────────────────────────────────────────── */
+.site-footer {
+  background-color: var(--footer-bg);
+  text-align: center;
+  padding: var(--sp-lg) var(--pad-page);
+  flex-shrink: 0;
+  border-top: 3px solid var(--green-deep);
+}
+
+.footer-brand {
+  font-family: var(--font-heading);
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--text-on-dark);
+  letter-spacing: 0.06em;
+  margin-bottom: var(--sp-xs);
+}
+
+.footer-note {
+  font-size: var(--text-xs);
+  color: rgba(245, 241, 236, 0.40);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   19. UTILITY CLASSES
+───────────────────────────────────────────────────────────── */
+.text-center { text-align: center; }
+.text-muted  { color: var(--text-muted); }
+
+
+/* ─────────────────────────────────────────────────────────────
+   20. RESPONSIVE — TABLET  (min-width: 640px)
+───────────────────────────────────────────────────────────── */
+@media (min-width: 640px) {
+
+  /* Typography scales up */
+  .site-title  { font-size: var(--text-2xl); }
+  h2           { font-size: var(--text-2xl); }
+  .hero-title  { font-size: var(--text-2xl); }
+
+  /* CTA nav: side-by-side buttons */
+  .cta-nav .nav-container {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--sp-lg);
+  }
+
+  /* Info grid: 4 columns on tablet */
+  .info-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Outcomes: 2-column */
+  .outcomes-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   21. RESPONSIVE — DESKTOP  (min-width: 960px)
+───────────────────────────────────────────────────────────── */
+@media (min-width: 960px) {
+
+  /* Header */
+  .site-header { padding: var(--sp-2xl) 0 var(--sp-xl); }
+  .site-title  { font-size: var(--text-3xl); }
+
+  /* Hero */
+  .hero-section { padding: var(--sp-2xl) 0; }
+  .hero-title   { font-size: var(--text-3xl); max-width: 620px; }
+  .hero-description { font-size: var(--text-lg); }
+
+  /* Sections: generous desktop breathing room */
+  .content-section { padding: var(--sp-2xl) 0; }
+
+  /* Feature chips: slightly larger text */
+  .feature-card { font-size: var(--text-base); }
+
+  /* Section headings */
+  h2 { font-size: var(--text-2xl); }
+
+}
