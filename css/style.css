@@ -808,8 +808,6 @@ em {
   }
 
 }
-
-
 /* ─────────────────────────────────────────────────────────────
    21. RESPONSIVE — DESKTOP  (min-width: 960px)
 ───────────────────────────────────────────────────────────── */
@@ -897,7 +895,7 @@ em {
     /* ---------- GRIDS → STACK ---------- */
     .features-grid {
       grid-template-columns: 1fr;
-      gap: 16px;
+      gap: 1.2rem;
     }
   
     /* ---------- FEATURE CARDS ---------- */
@@ -905,6 +903,11 @@ em {
       font-size: 1.05rem;
       padding: 18px 16px;
       text-align: center;
+    }
+    /* Navigation */
+    .nav-link {
+    font-size: 1rem;
+    padding: 0.6rem 0;
     }
   
     /* ---------- FOOTER ---------- */
