@@ -661,13 +661,31 @@
      gap: var(--sp-sm);
    }
    
+   
    .footer-logo {
-     height: 52px;
-     width: auto;
-     margin-inline: auto;
-     margin-bottom: var(--sp-xs);
-     filter: brightness(0) invert(1) opacity(0.85);
-   }
+    height: 52px;
+    width: auto;
+    margin-inline: auto;
+    margin-bottom: var(--sp-xs);
+    filter: none; /* preserve original colors */
+    
+    /* subtle continuous shine/glow */
+    animation: logo-glow 2.5s ease-in-out infinite alternate;
+}
+
+/* Keyframes for soft glow */
+@keyframes logo-glow {
+    0% {
+        filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+    }
+    100% {
+        filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.4));
+    }
+}
+
    
    .footer-brand {
      font-family: var(--font-heading);
